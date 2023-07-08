@@ -8,10 +8,10 @@ function toggleMode() {
    // Substituir imagem
    if (html.classList.contains('light')) {
      // Se estiver no modo claro, adicionar a imagem light
-     img.setAttribute('src', './img/camera.jpeg');
+     img.setAttribute('src', './img/bg.png');
    } else {
      // Se não estiver no modo claro, manter a imagem
-     img.setAttribute('src', './img/camera.jpeg');
+     img.setAttribute('src', './img/bg2.png');
    }
  }
  
