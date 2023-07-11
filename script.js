@@ -16,28 +16,54 @@ function toggleMode() {
  }
  
  var slideIndex = 0;
-var slides = document.getElementsByClassName("content");
-
-// Função para mostrar os slides
-function showSlides() {
-    // Ocultar todos os slides
-    for (var i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
-    // Avançar para o próximo slide
-    slideIndex++;
-    // Verificar se chegou ao final dos slides e voltar ao primeiro slide
-    if (slideIndex > slides.length) {
-        slideIndex = 1;
-    }
-    // Exibir o slide atual
-    slides[slideIndex - 1].style.display = "block";
-    // Definir um intervalo de tempo para trocar os slides automaticamente
-    setTimeout(showSlides, 3000); // Trocar o slide a cada 3 segundos (3000 milissegundos)
-}
-
-// Chamar a função showSlides para iniciar a exibição automática dos slides
-showSlides();
+ var slides = document.getElementsByClassName("slide");
+ var bars = document.getElementsByClassName("bar");
+ 
+ function showSlide(index) {
+     // Ocultar todos os slides e desmarcar todos os botões de navegação
+     for (var i = 0; i < slides.length; i++) {
+         slides[i].style.display = "none";
+         bars[i].classList.remove("active");
+     }
+ 
+     // Exibir o slide atual e marcar o botão de navegação correspondente
+     slides[index].style.display = "block";
+     bars[index].classList.add("active");
+ }
+ 
+ function nextSlide() {
+     slideIndex++;
+     if (slideIndex >= slides.length) {
+         slideIndex = 0;
+     }
+     showSlide(slideIndex);
+ }
+ 
+ function previousSlide() {
+     slideIndex--;
+     if (slideIndex < 0) {
+         slideIndex = slides.length - 1;
+     }
+     showSlide(slideIndex);
+ }
+ 
+ // Adicione os seguintes eventos para os botões de navegação
+ for (var i = 0; i < bars.length; i++) {
+     bars[i].addEventListener("click", function() {
+         slideIndex = Array.prototype.indexOf.call(bars, this);
+         showSlide(slideIndex);
+     });
+ }
+ 
+ // Adicione os seguintes eventos para os botões de avançar e voltar
+ var nextButton = document.getElementById("nextButton");
+ var previousButton = document.getElementById("previousButton");
+ 
+ nextButton.addEventListener("click", nextSlide);
+ previousButton.addEventListener("click", previousSlide);
+ 
+ // Chame a função showSlide para exibir o primeiro slide ao carregar a página
+ showSlide(slideIndex);
 
  document.addEventListener("DOMContentLoaded", function(event) {
   var slides = document.querySelectorAll(".slide");
