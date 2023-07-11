@@ -390,12 +390,7 @@ input {
     background-color: white;
 }
 
-#radio1:checked ~ .first {
-    margin-left: 0;
-}
 
-#radio2:checked ~ .first {
-    margin-left: -25%;
 }
 
 #radio3:checked ~ .first {
