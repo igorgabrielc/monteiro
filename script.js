@@ -15,17 +15,49 @@ function toggleMode() {
    }
  }
  
- let count = 1;
- document.getElementById("radio1").checked = true;
- 
- setInterval(function() {
-   nextImage();
- }, 4000);
- 
- function nextImage() {
-   count++;
-   if (count > 3) {
-     count = 1;
-   }
-   document.getElementById("radio" + count).checked = true;
- }
+ var slideIndex = 0;
+var slides = document.getElementsByClassName("content");
+
+// Função para mostrar os slides
+function showSlides() {
+    // Ocultar todos os slides
+    for (var i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    // Avançar para o próximo slide
+    slideIndex++;
+    // Verificar se chegou ao final dos slides e voltar ao primeiro slide
+    if (slideIndex > slides.length) {
+        slideIndex = 1;
+    }
+    // Exibir o slide atual
+    slides[slideIndex - 1].style.display = "block";
+    // Definir um intervalo de tempo para trocar os slides automaticamente
+    setTimeout(showSlides, 3000); // Trocar o slide a cada 3 segundos (3000 milissegundos)
+}
+
+// Chamar a função showSlides para iniciar a exibição automática dos slides
+showSlides();
+
+ document.addEventListener("DOMContentLoaded", function(event) {
+  var slides = document.querySelectorAll(".slide");
+  var currentSlide = 0;
+
+  function showSlide(n) {
+    slides[currentSlide].classList.remove("active");
+    currentSlide = (n + slides.length) % slides.length;
+    slides[currentSlide].classList.add("active");
+  }
+
+  function nextSlide() {
+    showSlide(currentSlide + 1);
+  }
+
+  function previousSlide() {
+    showSlide(currentSlide - 1);
+  }
+
+  setInterval(nextSlide, 5000); // Altere o tempo em milissegundos (5000 = 5 segundos)
+
+  showSlide(currentSlide);
+});
