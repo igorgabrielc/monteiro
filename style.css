@@ -157,6 +157,7 @@ body *
   opacity: 1;
 }
 */
+
 #switch {
     position: relative;
     left: 42%;
@@ -176,7 +177,7 @@ border-radius: 50%;
 position: absolute;
 top: 50%;
 left: 0;
-z-index: 1;
+z-index: 99;
 transform: translateY(-50%);
 
 
@@ -204,7 +205,7 @@ transform: translateY(-50%);
     width: 100%;
     min-height: 50vh;
     margin: 0 0 0 0;
-    padding: 5% 2% 10% 0;
+    padding: 5% 0 10% 0;
     margin-bottom: 2%;
         
 }
@@ -216,7 +217,7 @@ figure {
 }
 
 #corpo span {
-padding: 10px 60px 35px 60px;
+padding: 35px 60px 35px 60px;
 width: auto;
 display: flex;
 place-items: center; 
@@ -231,6 +232,7 @@ place-content: center;
     -webkit-filter: drop-shadow(0px 0px 10px rgba(0 0 0 / 10%)); 
     filter: drop-shadow(0px 0px 10px rgba(0 0 0 / 50%));
     margin-bottom: 2%;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     
 }
 .texto1  {
@@ -263,6 +265,7 @@ place-content: center;
     border-radius: 20px;
     overflow: hidden; 
     position: relative;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 
   
 }
@@ -297,7 +300,7 @@ place-content: center;
     background-color: white;
 }
 
-input {
+.inputgaleria {
     display: none;
 }
 
@@ -334,100 +337,7 @@ input {
     margin-left: -40%;
 }
 
-/*.slider{
 
-    width: 500px;
-    height: 500px;
-    overflow: hidden;
-    
-
-}
-
-.slides{
-    width: 400%;
-    height: 500px;
-    display: flex;
-
-}
-
-.slides input {
-    display: none;
-}
-
-.slide{
-    width: 25%;
-    position: relative;
-    transition: 1s;
-
-}
-
-.slide img{
-    width: 500px;
-}
-
-.manual-navigation{
-    position: absolute;
-    width: 500px;
-    margin-top: -25px;
-    display: flex;
-    justify-content: center;
-
-}
-
-.manual-btn{
-    border: 2px solid rgb(255, 255, 255);
-    padding: 5px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: .05s;
-}
-
-.manual-btn:not(:last-child){
-    margin-right: 40px;
-}
-
-.manual-btn:hover{
-    background-color: white;
-}
-
-
-}
-
-#radio3:checked ~ .first {
-    margin-left: -50%;
-}
-.navigation-auto div{
-    border: 2px solid black;
-    padding: 5px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: .05s;
-
-}
-
-.navigation-auto{
-    position: absolute;
-    width: 500px;
-    margin-top: 475px;
-    display: flex;
-    justify-content: center;
-}
-
-.navigation-auto div:not(:last-child){
-    margin-right: 40px;
-
-}
-
-#radio1:checked ~ .navigation-auto .auto-btn1{
-    background-color:rgb(255, 255, 255) ;
-}
-#radio2:checked ~ .navigation-auto .auto-btn2{
-    background-color:rgb(255, 255, 255) ;
-}
-#radio3:checked ~ .navigation-auto .auto-btn3{
-    background-color:rgb(255, 255, 255) ;
-}
-*/
 
 .texto2  {
     width: 100%;
@@ -455,12 +365,12 @@ input {
     font-family: Arial, Helvetica, sans-serif; 
     width: 100%;
     height: auto;
-    margin: 5% 0 0 0;
+    margin: 5% 0 15% 0;
     display: flex;
     place-items: center;
     justify-content: center;
-    padding: 2.5%;
-    margin-bottom: 5%;
+    padding: 2.5% 0;
+ 
         
  
 }
@@ -470,10 +380,10 @@ input {
     height: auto;
     display: grid;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 0.5em;
+    font-size: 0.7em;
     place-items: center;
     place-content: center;
-    padding: 3% 5%;
+    padding: 3% 2%;
     
     }
     
@@ -508,12 +418,13 @@ section{
     border-radius:16px ;
     background: rgb(51, 51, 51);
     width: 350px;
+    height: 685px;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 
 }
 section h2 {
     color: white;
-    font-size: 2.5rem;
+    font-size: 2rem;
     margin: 2rem;
 }
 section form {
@@ -533,7 +444,7 @@ form input{
     outline: none;
     border: 0;
     margin-bottom: 20px;
-    font-size: 15px;
+    font-size: 12px;
     transition: all 0.5s;
 
 }
@@ -545,7 +456,7 @@ form textarea{
     padding: 10px;
     outline: none;
     border: 0;
-    font-size: 15px;
+    font-size: 12px;
     margin-bottom: 30px;
     transition: all 0.5s;
 }
@@ -555,7 +466,7 @@ form textarea:focus{
 form button{
     padding: 15px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 12px;
     background: transparent;
     border: 2px solid white;
     color: antiquewhite;
@@ -629,3 +540,27 @@ footer{
     border-left: 1px solid;/* Adiciona borda esquerda na div como ser fosse uma linha.*/
     box-sizing: border-box;
    }
+   .float-whatsapp {
+    bottom: 80px;
+    right: 20px;
+    z-index: 999;
+    font-size: 29px;
+}
+
+.float-whatsapp.float-on {
+  position: fixed;
+}
+
+.float-whatsapp a {
+    background: #008617;
+    padding: 10px 20px 10px 15px;
+    border-radius: 999px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.float-whatsapp svg {
+    height: 50px;
+    margin-bottom: -15px;
+    margin-left: 4px;
+}
