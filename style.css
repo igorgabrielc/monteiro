@@ -481,11 +481,11 @@ footer{
     border-left: 1px solid;/* Adiciona borda esquerda na div como ser fosse uma linha.*/
     box-sizing: border-box;
    }
-   .float-whatsapp {
+.float-whatsapp {
     bottom: 55px;
     right: 20px;
     z-index: 999;
-    font-size: 29px;
+    font-size: 40px;
 }
 
 .float-whatsapp.float-on {
@@ -502,6 +502,6 @@ footer{
 
 .float-whatsapp svg {
     height: 50px;
-    margin-bottom: -15px;
-    margin-left: 4px;
+    margin-bottom: -12px;
+    margin-left: 5px;
 }
