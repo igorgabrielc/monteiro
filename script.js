@@ -14,33 +14,60 @@ function toggleMode() {
      img.setAttribute('src', './img/bg2.png');
    }
  }
- 
- const carrusel = document.querySelector(".carrusel-items");
 
- let maxScrollLeft = carrusel.scrollWidth - carrusel.clientWidth;
- let intervalo = null;
- let step = 1;
- const start = () => {
-   intervalo = setInterval(function () {
-     carrusel.scrollLeft = carrusel.scrollLeft + step;
-     if (carrusel.scrollLeft === maxScrollLeft) {
-       step = step * -1;
-     } else if (carrusel.scrollLeft === 0) {
-       step = step * -1;
-     }
-   }, 10);
- };
+ document.addEventListener("DOMContentLoaded", function() {
+  var slideIndex = 1;
+  showSlide(slideIndex);
+
+  function showSlide(n) {
+    var slides = document.getElementsByClassName("s-item");
+    if (n > slides.length) {
+      slideIndex = 1;
+    }
+    if (n < 1) {
+      slideIndex = slides.length;
+    }
+    for (var i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    slides[slideIndex - 1].style.display = "block";
+  }
+
+  function changeSlide(n) {
+    showSlide((slideIndex += n));
+  }
+
+  var leftControl = document.querySelector("#trabalho .left-control");
+  var rightControl = document.querySelector("#trabalho .right-control");
+
+  leftControl.addEventListener("click", function() {
+    changeSlide(-1);
+  });
+
+  rightControl.addEventListener("click", function() {
+    changeSlide(1);
+  });
+
+  // Função para rotação automática
+  function autoRotate() {
+    changeSlide(1);
+  }
+
+
+  var interval = 5000; 
+
  
- const stop = () => {
-   clearInterval(intervalo);
- };
- 
- carrusel.addEventListener("mouseover", () => {
-   stop();
- });
- 
- carrusel.addEventListener("mouseout", () => {
-   start();
- });
- 
- start();
+  var autoRotation = setInterval(autoRotate, interval);
+
+  // Pausar a rotação automática quando o mouse estiver sobre o slider
+  var slider = document.getElementById("trabalho");
+
+  slider.addEventListener("mouseenter", function() {
+    clearInterval(autoRotation);
+  });
+
+  // Retomar a rotação automática quando o mouse sair do slider
+  slider.addEventListener("mouseleave", function() {
+    autoRotation = setInterval(autoRotate, interval);
+  });
+});
