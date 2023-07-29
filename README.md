@@ -1,6 +1,8 @@
 # Projeto Monteiro e Rodrigues - Sistema de Segurança
 
-(inicio-desktop-light.png)
+<p align="center">
+<img src="inicio-desktop-light.png" alt="monteiro" width="700" >
+</p>
 
 ## Descrição do Projeto
 
