@@ -15,59 +15,105 @@ function toggleMode() {
    }
  }
 
- document.addEventListener("DOMContentLoaded", function() {
-  var slideIndex = 1;
-  showSlide(slideIndex);
-
-  function showSlide(n) {
-    var slides = document.getElementsByClassName("s-item");
-    if (n > slides.length) {
-      slideIndex = 1;
-    }
-    if (n < 1) {
-      slideIndex = slides.length;
-    }
-    for (var i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-    }
-    slides[slideIndex - 1].style.display = "block";
-  }
-
-  function changeSlide(n) {
-    showSlide((slideIndex += n));
-  }
-
-  var leftControl = document.querySelector("#trabalho .left-control");
-  var rightControl = document.querySelector("#trabalho .right-control");
-
-  leftControl.addEventListener("click", function() {
-    changeSlide(-1);
-  });
-
-  rightControl.addEventListener("click", function() {
-    changeSlide(1);
-  });
-
-  // Função para rotação automática
-  function autoRotate() {
-    changeSlide(1);
-  }
-
-
-  var interval = 5000; 
-
  
-  var autoRotation = setInterval(autoRotate, interval);
+class FormSubmit {
+  constructor(settings) {
+    this.settings = settings;
+    this.form = document.querySelector(settings.form);
+    this.formButton = document.querySelector(settings.button);
+    if (this.form) {
+      this.url = this.form.getAttribute("action");
+    }
+    this.sendForm = this.sendForm.bind(this);
+  }
 
-  // Pausar a rotação automática quando o mouse estiver sobre o slider
-  var slider = document.getElementById("trabalho");
+  displaySuccess() {
+    this.form.innerHTML = this.settings.success;
+  }
 
-  slider.addEventListener("mouseenter", function() {
-    clearInterval(autoRotation);
-  });
+  displayError() {
+    this.form.innerHTML = this.settings.error;
+  }
 
-  // Retomar a rotação automática quando o mouse sair do slider
-  slider.addEventListener("mouseleave", function() {
-    autoRotation = setInterval(autoRotate, interval);
-  });
+  getFormObject() {
+    const formObject = {};
+    const fields = this.form.querySelectorAll("[name]");
+    fields.forEach((field) => {
+      formObject[field.getAttribute("name")] = field.value;
+    });
+    return formObject;
+  }
+
+  onSubmission(event) {
+    event.preventDefault();
+    event.target.disabled = true;
+    event.target.innerText = "Enviando...";
+  }
+
+  async sendForm(event) {
+    try {
+      this.onSubmission(event);
+      await fetch(this.url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(this.getFormObject()),
+      });
+      this.displaySuccess();
+    } catch (error) {
+      this.displayError();
+      throw new Error(error);
+    }
+  }
+
+  init() {
+    if (this.form) this.formButton.addEventListener("click", this.sendForm);
+    return this;
+  }
+}
+
+const formSubmit = new FormSubmit({
+  form: "[data-form]",
+  button: "[data-button]",
+  success: "<h1 class='text'>Obrigado pelo Contato</h1> <p class='paragrafo'>Em breve iremos retornar sua mensagem.</p>",
+  error: "<h1 class='error'>Não foi possível enviar sua mensagem.</h1>",
 });
+formSubmit.init();
+
+var swiper = new Swiper(".swiper-container", {
+  effect: "coverflow",
+  grabCursor: true,
+  centeredSlides: true,
+  sliderPerVier: "auto",
+  coverflowEffect:{
+      rotade:0,
+      streth:0,
+      depth:900 ,
+      modifer:1,
+      slidesShadows:true,
+  } ,
+   loop:true, 
+   loopedSlides: 3,
+   autoplay: {
+    delay: 2000, 
+    disableOnInteraction: false,
+  },
+  on: {
+    slideChange: function () {
+     
+      document.querySelectorAll(".swiper-slide").forEach(function (slide) {
+        slide.style.filter = "none";
+      });
+     
+      var activeIndex = this.activeIndex;
+      var prevSlide = this.slides[activeIndex - 1];
+      var nextSlide = this.slides[activeIndex + 1];
+      [prevSlide, nextSlide].forEach(function (slide) {
+        if (slide) {
+          slide.style.filter = "blur(3px)"; 
+        }});
+      },
+    },
+  });
